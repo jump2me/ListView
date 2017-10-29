@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{00ACC62A-B315-C946-DC12-C5D11EDE0B61}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Examples/ExampleListViewData.cs">
+    <Files>
+      <File FileName="Assets/Scripts/ListView/ListViewData.cs" Line="23" Column="146" />
+      <File FileName="Assets/Scripts/ListView/ListView.cs" Line="34" Column="9" />
+      <File FileName="Assets/Scripts/Helper/MathHelper.cs" Line="9" Column="43" />
+      <File FileName="Assets/Scripts/ListView/ListItem.cs" Line="19" Column="72" />
+      <File FileName="Assets/Scripts/Helper/ObservableList.cs" Line="53" Column="25" />
+      <File FileName="Assets/Scripts/ListView/ListViewModel.cs" Line="24" Column="37" />
+      <File FileName="Assets/Scripts/Helper/ListViewHelper.cs" Line="45" Column="58" />
+      <File FileName="Assets/Scripts/Examples/Example.cs" Line="29" Column="84" />
+      <File FileName="Assets/Scripts/Examples/DataBindingExample.cs" Line="28" Column="39" />
+      <File FileName="Assets/Scripts/Examples/ExampleListViewData.cs" Line="5" Column="14" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.lazymind.listview PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
