@@ -6,25 +6,25 @@ public class Example : MonoBehaviour
 {
     public ObservableList<ExampleListViewData> topDataProvider { get; set; }
     public RectTransform topRectTransform;
-    public ListViewModel<ExampleListViewData> topList { get; set; }
+    public ListView<ExampleListViewData> topList { get; set; }
 
     public ObservableList<ExampleListViewData> bottomDataProvider { get; set; }
     public RectTransform bottomRectTransform;
-    public ListViewModel<ExampleListViewData> bottomList { get; set; }
+    public ListView<ExampleListViewData> bottomList { get; set; }
 
     public ObservableList<ExampleListViewData> leftDataProvider { get; set; }
     public RectTransform leftRectTransform;
-    public ListViewModel<ExampleListViewData> leftList { get; set; }
+    public ListView<ExampleListViewData> leftList { get; set; }
 
     public ObservableList<ExampleListViewData> rightDataProvider { get; set; }
     public RectTransform rightRectTransform;
-    public ListViewModel<ExampleListViewData> rightList { get; set; }
+    public ListView<ExampleListViewData> rightList { get; set; }
 
     void Start()
     {
         // top
         topDataProvider = new ObservableList<ExampleListViewData>();
-        topList = new ListViewModel<ExampleListViewData>(topRectTransform, topDataProvider, ListViewHelper.Origin.Top);
+        topList = new ListView<ExampleListViewData>(topRectTransform, topDataProvider, ViewHelper.Origin.Top);
 
         var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Vertical");
 
@@ -36,11 +36,10 @@ public class Example : MonoBehaviour
             {
                 ID = i,
 
-                Width = (int)topRectTransform.rect.width,
-                Height = 50,
-
                 Prefab = prefab,
                 StringName = "top : " + i,
+
+                DataProvider = topDataProvider,
             };
 
             topDataProvider.Add(data, i == max - 1);
@@ -48,7 +47,7 @@ public class Example : MonoBehaviour
 
         // bottom
         bottomDataProvider = new ObservableList<ExampleListViewData>();
-        bottomList = new ListViewModel<ExampleListViewData>(bottomRectTransform, bottomDataProvider, ListViewHelper.Origin.Bottom);
+        bottomList = new ListView<ExampleListViewData>(bottomRectTransform, bottomDataProvider, ViewHelper.Origin.Bottom);
 
         bottomDataProvider.Clear(false);
 
@@ -58,11 +57,10 @@ public class Example : MonoBehaviour
             {
                 ID = i,
 
-                Width = (int)bottomRectTransform.rect.width,
-                Height = 50,
-
                 Prefab = prefab,
                 StringName = "bottom : " + i,
+
+                DataProvider = bottomDataProvider,
             };
 
             bottomDataProvider.Add(data, i == max - 1);
@@ -70,7 +68,7 @@ public class Example : MonoBehaviour
 
         // left
         leftDataProvider = new ObservableList<ExampleListViewData>();
-        leftList = new ListViewModel<ExampleListViewData>(leftRectTransform, leftDataProvider, ListViewHelper.Origin.Left);
+        leftList = new ListView<ExampleListViewData>(leftRectTransform, leftDataProvider, ViewHelper.Origin.Left);
 
         prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Horizontal");
 
@@ -82,11 +80,10 @@ public class Example : MonoBehaviour
             {
                 ID = i,
 
-                Width = 150,
-                Height = (int)leftRectTransform.rect.height,
-
                 Prefab = prefab,
                 StringName = "left : " + i,
+
+                DataProvider = leftDataProvider,
             };
 
             leftDataProvider.Add(data, i == max - 1);
@@ -95,7 +92,7 @@ public class Example : MonoBehaviour
 
         // right
         rightDataProvider = new ObservableList<ExampleListViewData>();
-        rightList = new ListViewModel<ExampleListViewData>(rightRectTransform, rightDataProvider, ListViewHelper.Origin.Right);
+        rightList = new ListView<ExampleListViewData>(rightRectTransform, rightDataProvider, ViewHelper.Origin.Right);
 
         prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Horizontal");
 
@@ -107,11 +104,10 @@ public class Example : MonoBehaviour
             {
                 ID = i,
 
-                Width = 150,
-                Height = (int)rightRectTransform.rect.height,
-
                 Prefab = prefab,
                 StringName = "right : " + i,
+
+                DataProvider = rightDataProvider,
             };
 
             rightDataProvider.Add(data, i == max - 1);

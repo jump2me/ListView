@@ -11,6 +11,9 @@ public class ListViewData
     public int Min { get; set; }
     public int Max { get; set; }
 
+    public int X { get; set; }
+    public int Y { get; set; }
+
     private GameObject m_prefab;
     public GameObject Prefab 
     { 
@@ -37,9 +40,5 @@ public class ListViewData
     public bool IsWithin(float x)
     {
         return MathHelper.IsWithin(x, Min, Max);
-    }
-    public override string ToString()
-    {
-        return string.Format("[ListViewData: ID={0}, Width={1}, Height={2}, Min={3}, Max={4}, Prefab={5}]", ID, Width, Height, Min, Max, Prefab);
     }
 }

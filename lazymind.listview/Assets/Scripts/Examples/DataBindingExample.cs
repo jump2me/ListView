@@ -9,7 +9,7 @@ public class DataBindingExample : MonoBehaviour
     public RectTransform listRectTransform;
 
     public ObservableList<ExampleListViewData> DataProvider { get; set; }
-    public ListViewModel<ExampleListViewData> listView { get; set; }
+    public ListView<ExampleListViewData> listView { get; set; }
 
     public Button addButton;
     public Button removeButton;
@@ -19,7 +19,7 @@ public class DataBindingExample : MonoBehaviour
     private void Start()
     {
         DataProvider = new ObservableList<ExampleListViewData>();
-        listView = new ListViewModel<ExampleListViewData>(listRectTransform, DataProvider, ListViewHelper.Origin.Top);
+        listView = new ListView<ExampleListViewData>(listRectTransform, DataProvider, ViewHelper.Origin.Top);
 
         addButton.onClick.AddListener(OnAddButtonClicked);
         removeButton.onClick.AddListener(OnRemoveButtonClicked);
@@ -37,6 +37,7 @@ public class DataBindingExample : MonoBehaviour
             Prefab = prefab,
 
             StringName = "data" + id,
+            DataProvider = DataProvider,
         };
 
         DataProvider.Add(data);
@@ -52,6 +53,7 @@ public class DataBindingExample : MonoBehaviour
             Prefab = prefab,
 
             StringName = "data" + id,
+            DataProvider = DataProvider,
         };
 
         DataProvider.Insert(0, data);
