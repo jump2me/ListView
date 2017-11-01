@@ -31,14 +31,8 @@ public class DataBindingExample : MonoBehaviour
     {
         var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Vertical");
         var id = DataProvider.Items.Count;
-        var data = new ExampleListViewData()
-        {
-            ID = id,
-            Prefab = prefab,
-
-            StringName = "data" + id,
-            DataProvider = DataProvider,
-        };
+        var data = new ExampleListViewData(id, prefab, DataProvider);
+        data.StringName.Value = "data" + id;
 
         DataProvider.Add(data);
     }
@@ -47,14 +41,8 @@ public class DataBindingExample : MonoBehaviour
     {
         var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Vertical");
         var id = DataProvider.Items.Count;
-        var data = new ExampleListViewData()
-        {
-            ID = id,
-            Prefab = prefab,
-
-            StringName = "data" + id,
-            DataProvider = DataProvider,
-        };
+        var data = new ExampleListViewData(id, prefab, DataProvider);
+        data.StringName.Value = "data" + id;
 
         DataProvider.Insert(0, data);
     }

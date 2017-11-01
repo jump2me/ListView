@@ -32,15 +32,8 @@ public class Example : MonoBehaviour
 
         for (int i = 0, max = 100; i < max; i++)
         {
-            var data = new ExampleListViewData
-            {
-                ID = i,
-
-                Prefab = prefab,
-                StringName = "top : " + i,
-
-                DataProvider = topDataProvider,
-            };
+            var data = new ExampleListViewData(i, prefab, topDataProvider);
+            data.StringName.Value = "top : " + i;
 
             topDataProvider.Add(data, i == max - 1);
         }
@@ -53,15 +46,8 @@ public class Example : MonoBehaviour
 
         for (int i = 0, max = 100; i < max; i++)
         {
-            var data = new ExampleListViewData
-            {
-                ID = i,
-
-                Prefab = prefab,
-                StringName = "bottom : " + i,
-
-                DataProvider = bottomDataProvider,
-            };
+            var data = new ExampleListViewData(i, prefab, bottomDataProvider);
+            data.StringName.Value = "bottom : " + i;
 
             bottomDataProvider.Add(data, i == max - 1);
         }
@@ -76,15 +62,8 @@ public class Example : MonoBehaviour
 
         for (int i = 0, max = 100; i < max; i++)
         {
-            var data = new ExampleListViewData
-            {
-                ID = i,
-
-                Prefab = prefab,
-                StringName = "left : " + i,
-
-                DataProvider = leftDataProvider,
-            };
+            var data = new ExampleListViewData(i, prefab, leftDataProvider);
+            data.StringName.Value = "left : " + i;
 
             leftDataProvider.Add(data, i == max - 1);
         }
@@ -100,15 +79,8 @@ public class Example : MonoBehaviour
 
         for (int i = 0, max = 100; i < max; i++)
         {
-            var data = new ExampleListViewData
-            {
-                ID = i,
-
-                Prefab = prefab,
-                StringName = "right : " + i,
-
-                DataProvider = rightDataProvider,
-            };
+            var data = new ExampleListViewData(i, prefab, rightDataProvider);
+            data.StringName.Value = "right : " + i;
 
             rightDataProvider.Add(data, i == max - 1);
         }

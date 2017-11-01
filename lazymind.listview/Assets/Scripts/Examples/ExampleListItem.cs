@@ -19,12 +19,11 @@ public class ExampleListItem : ListItem<ExampleListViewData>
     {
         base.Invalidate();
 
-        stringNameText.text = Data.StringName;
+        stringNameText.text = Data.StringName.Value;
     }
 
     void OnBGButtonClicked()
     {
-        if(Data.DataProvider != null)
-            Data.DataProvider.Remove(Data);
+        Data.StringName.Value = System.DateTime.Now.ToString();
     }
 }

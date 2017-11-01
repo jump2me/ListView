@@ -21,15 +21,8 @@ public class TileExample : MonoBehaviour
 
         for (int i = 0, max = 107; i < max; i++)
         {
-            var data = new ExampleListViewData
-            {
-                ID = i,
-
-                Prefab = prefab,
-                StringName = "top : " + i,
-
-                DataProvider = DataProvider,
-            };
+            var data = new ExampleListViewData(i, prefab, DataProvider);
+            data.StringName.Value = "top : " + i;
 
             DataProvider.Add(data, i == max - 1);
         }

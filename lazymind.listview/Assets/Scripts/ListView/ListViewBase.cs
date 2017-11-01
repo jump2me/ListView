@@ -165,8 +165,7 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
 
         rectTransform.anchoredPosition = anchoredPosition;
 
-        if(listItem.Data == null || listItem.Data.ID != _data.ID)
-            listItem.SetData(_data);
+        listItem.SetData(_data);
     }
 
     protected virtual void OnScroll(Vector2 _value)
