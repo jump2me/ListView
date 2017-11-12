@@ -99,20 +99,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Examples\DataBindingExample.cs" />
-    <Compile Include="Assets\Scripts\Examples\Example.cs" />
-    <Compile Include="Assets\Scripts\Examples\ExampleListItem.cs" />
-    <Compile Include="Assets\Scripts\Examples\ExampleListViewData.cs" />
-    <Compile Include="Assets\Scripts\Examples\TileExample.cs" />
-    <Compile Include="Assets\Scripts\Helper\MathHelper.cs" />
-    <Compile Include="Assets\Scripts\Helper\ObservableList.cs" />
-    <Compile Include="Assets\Scripts\Helper\ViewHelper.cs" />
-    <Compile Include="Assets\Scripts\ListView\ListItem.cs" />
-    <Compile Include="Assets\Scripts\ListView\ListView.cs" />
-    <Compile Include="Assets\Scripts\ListView\ListViewBase.cs" />
-    <Compile Include="Assets\Scripts\ListView\ListViewData.cs" />
-    <Compile Include="Assets\Scripts\ListView\TileView.cs" />
-    <Compile Include="Assets\Scripts\ListView\ViewComponent.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\DataBindingExample.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\Example.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\ExampleListItem.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\ExampleListViewData.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\TileExample.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\Helper\MathHelper.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\Helper\ObservableList.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\Helper\ViewHelper.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\ListItem.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\ListView.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\ListViewBase.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\ListViewData.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\TileView.cs" />
+    <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\ViewComponent.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

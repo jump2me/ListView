@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/DataBindingExample.unity
+- path: Assets/Lazymind/ListView/Scenes/OriginExample.unity
   isLoaded: 1
   isActive: 1
