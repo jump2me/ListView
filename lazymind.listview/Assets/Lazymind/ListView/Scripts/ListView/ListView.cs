@@ -15,7 +15,7 @@ public class ListView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
         var origin = ViewComponent.Origin;
         for (int index = 0, max = DataProvider.Count; index < max; index++)
         {
-            var data = DataProvider.ElementAtOrDefault(index);
+            var data = DataProvider[index];
             data.Min = sum;
             switch (origin)
             {

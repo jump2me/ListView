@@ -13,34 +13,38 @@ public static class ViewHelper
 
     public static void SetAnchor(this RectTransform _rectTransform, Origin _origin)
     {
+        var topLeft = new Vector2(0f, 1f);
+        var bottomLeft = Vector2.zero;
+        var topRight = Vector2.one;
+
         switch (_origin)
         {
             case Origin.Top:
                 {
-                    _rectTransform.anchorMin = new Vector2(0f, 1f);
-                    _rectTransform.anchorMax = new Vector2(0f, 1f);
-                    _rectTransform.pivot = new Vector2(0f, 1f);
+                    _rectTransform.anchorMin = topLeft;
+                    _rectTransform.anchorMax = topLeft;
+                    _rectTransform.pivot = topLeft;
                 }
                 break;
             case Origin.Bottom:
                 {
-                    _rectTransform.anchorMin = Vector2.zero;
-                    _rectTransform.anchorMax = Vector2.zero;
-                    _rectTransform.pivot = Vector2.zero;
+                    _rectTransform.anchorMin = bottomLeft;
+                    _rectTransform.anchorMax = bottomLeft;
+                    _rectTransform.pivot = bottomLeft;
                 }
                 break;
             case Origin.Left:
                 {
-                    _rectTransform.anchorMin = new Vector2(0f, 1f);
-                    _rectTransform.anchorMax = new Vector2(0f, 1f);
-                    _rectTransform.pivot = new Vector2(0f, 1f);
+                    _rectTransform.anchorMin = topLeft;
+                    _rectTransform.anchorMax = topLeft;
+                    _rectTransform.pivot = topLeft;
                 }
                 break;
             case Origin.Right:
                 {
-                    _rectTransform.anchorMin = Vector2.one;
-                    _rectTransform.anchorMax = Vector2.one;
-                    _rectTransform.pivot = Vector2.one;
+                    _rectTransform.anchorMin = topRight;
+                    _rectTransform.anchorMax = topRight;
+                    _rectTransform.pivot = topRight;
                 }
                 break;
         }

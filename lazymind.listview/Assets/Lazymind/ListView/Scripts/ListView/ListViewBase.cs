@@ -133,7 +133,7 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
     {
         var anchoredPosition = GetListItemAnchoredPosition(_data);
 
-        RectTransform rectTransform = null;
+        RectTransform listItemRectTransform = null;
         ListItem<TYPE> listItem = null;
 
         if (ListItemInfoQueueByPrefab.ContainsKey(_data.Prefab) == false)
@@ -144,24 +144,24 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
         {
             GameObject go = ListItemRendererPool.Get(_data.Prefab);
 
-            rectTransform = go.GetComponent<RectTransform>();
-            rectTransform.SetAnchor(ViewComponent.Origin);
-            rectTransform.SetParent(ViewComponent.Content, false);
+            listItemRectTransform = go.GetComponent<RectTransform>();
+            listItemRectTransform.SetAnchor(ViewComponent.Origin);
+            listItemRectTransform.SetParent(ViewComponent.Content, false);
 
             listItem = go.GetComponent<ListItem<TYPE>>();
 
-            queue.Enqueue(new ListItemInfo() { RectTransform = rectTransform, ListItem = listItem });
+            queue.Enqueue(new ListItemInfo() { RectTransform = listItemRectTransform, ListItem = listItem });
         }
         else
         {
             var info = queue.Dequeue();
             listItem = info.ListItem;
-            rectTransform = info.RectTransform;
+            listItemRectTransform = info.RectTransform;
 
             queue.Enqueue(info);
         }
 
-        rectTransform.anchoredPosition = anchoredPosition;
+        listItemRectTransform.anchoredPosition = anchoredPosition;
 
         listItem.SetData(_data);
     }

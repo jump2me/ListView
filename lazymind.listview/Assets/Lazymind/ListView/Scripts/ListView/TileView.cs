@@ -17,7 +17,7 @@ public class TileView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
         var maxY = 0;
         for (int index = 0, max = DataProvider.Count; index < max; index++)
         {
-            var data = DataProvider.ElementAtOrDefault(index);
+            var data = DataProvider[index];
             data.X = (index % Column) * data.Width;
             data.Y = (index / Column) * data.Height;
 

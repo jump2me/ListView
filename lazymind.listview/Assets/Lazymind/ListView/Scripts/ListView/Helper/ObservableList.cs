@@ -119,4 +119,15 @@ public class ObservableList<TYPE> where TYPE : ListViewData
         return m_list.GetRange(index, count);
     }
 
+    public TYPE this[int _index]
+    {
+        get
+        {
+            return m_list.ElementAtOrDefault(_index);
+        }
+        set
+        {
+            m_list[_index] = value;
+        }
+    }
 }
