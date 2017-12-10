@@ -15,7 +15,7 @@ public class TileExample : MonoBehaviour
         DataProvider = new ObservableList<ExampleListViewData>();
         var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Tile");
 
-        tileView = new TileView<ExampleListViewData>(tileListRectTransform, DataProvider, 5, prefab);
+        tileView = new TileView<ExampleListViewData>(tileListRectTransform, DataProvider, prefab);
 
         DataProvider.Clear(false);
 

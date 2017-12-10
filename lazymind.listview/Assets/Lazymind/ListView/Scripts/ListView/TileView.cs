@@ -2,18 +2,16 @@
 
 public class TileView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
 {
-    public int Column { get; set; }
-
-    public TileView(RectTransform _rectTransform, ObservableList<TYPE> _dataProvider, int _column, params GameObject[] _prefabs)
+    public TileView(RectTransform _rectTransform, ObservableList<TYPE> _dataProvider, params GameObject[] _prefabs)
     {
         base.Init(_rectTransform, _dataProvider, _prefabs);
 
         ViewComponent.SetAnchor(ViewHelper.Origin.Top);
-        Column = _column;
     }
 
     protected override void CalcContentCoordination()
     {
+        var column = -1;
         var maxY = 0;
         for (int index = 0, max = DataProvider.Count; index < max; index++)
         {
@@ -21,11 +19,15 @@ public class TileView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
             var prefab = GetPrefab(data.PrefabName);
 
             var size = PrefabSizeByName[prefab.name];
+
             var width = (int)size.x;
             var height = (int)size.y;
 
-            data.X = (index % Column) * width;
-            data.Y = (index / Column) * height;
+            if (column == -1)
+                column = (int)(ViewComponent.RectTransform.rect.width / width);
+
+            data.X = (index % column) * width;
+            data.Y = (index / column) * height;
 
             data.Min = data.Y;
             data.Max = data.Y + height;
