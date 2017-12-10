@@ -16,6 +16,7 @@ public static class ViewHelper
         var topLeft = new Vector2(0f, 1f);
         var bottomLeft = Vector2.zero;
         var topRight = Vector2.one;
+        var bottomRight = new Vector2(1f, 0f);
 
         switch (_origin)
         {

@@ -45,6 +45,7 @@ public class ViewComponent : MonoBehaviour
         Origin = _origin;
 
         ScrollRect.SetAnchor(Origin);
+
         SetContentRectTransform(RectTransform.rect.width, RectTransform.rect.height);
     }
 
@@ -53,10 +54,10 @@ public class ViewComponent : MonoBehaviour
         OnScroll(Content.anchoredPosition);
     }
 
-    public void SetContentRectTransform(float _width, float _height)
+    public void SetContentRectTransform(float _deltaX, float _deltaY)
     {
         Content.SetAnchor(Origin);
 
-        Content.sizeDelta = new Vector2(_width, _height);
+        Content.sizeDelta = new Vector2(_deltaX, _deltaY);
     }
 }

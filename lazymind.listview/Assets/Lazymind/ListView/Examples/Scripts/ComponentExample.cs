@@ -1,16 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lazymind;
 
 public class ComponentExample : MonoBehaviour {
 
-	// Use this for initialization
+    public RectTransform list;
+    public ObservableList<ExampleListViewData> DataProvider = new ObservableList<ExampleListViewData>();
+    public ListView<ExampleListViewData> listView;
+    public GameObject prefab;
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        
+        listView = new ListView<ExampleListViewData>(list, DataProvider, ViewHelper.Origin.Top, prefab);
+
+        for (int i = 0, max = 100; i < max; i++)
+        {
+            var data = new ExampleListViewData(i, DataProvider);
+            data.StringName.Value = "test item no." + i;
+
+            DataProvider.Add(data);
+        }
 	}
 }

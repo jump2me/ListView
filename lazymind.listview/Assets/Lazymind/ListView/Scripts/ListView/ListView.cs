@@ -38,17 +38,21 @@ public class ListView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
             }
         }
 
+        var deltaX = ViewComponent.Content.sizeDelta.x;
+        var deltaY = ViewComponent.Content.sizeDelta.y;
         switch (origin)
         {
             case ViewHelper.Origin.Top:
             case ViewHelper.Origin.Bottom:
-                ViewComponent.SetContentRectTransform(ViewComponent.Content.sizeDelta.x, sum);
+                deltaY = sum;
                 break;
             case ViewHelper.Origin.Left:
             case ViewHelper.Origin.Right:
-                ViewComponent.SetContentRectTransform(sum, ViewComponent.Content.sizeDelta.y);
+                deltaX = sum;
                 break;
         }
+
+        ViewComponent.SetContentRectTransform(deltaX, deltaY);
 
         base.CalcContentCoordination();
     }
