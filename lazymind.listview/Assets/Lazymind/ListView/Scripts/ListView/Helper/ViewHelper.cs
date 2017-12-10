@@ -16,7 +16,6 @@ public static class ViewHelper
         var topLeft = new Vector2(0f, 1f);
         var bottomLeft = Vector2.zero;
         var topRight = Vector2.one;
-        var bottomRight = new Vector2(1f, 0f);
 
         switch (_origin)
         {
@@ -59,7 +58,7 @@ public static class ViewHelper
             case Origin.Bottom:
                 {
                     _scrollRect.vertical = true;
-                    _scrollRect.horizontal = false;    
+                    _scrollRect.horizontal = false;
                 }
                 break;
             case Origin.Left:
@@ -68,6 +67,22 @@ public static class ViewHelper
                     _scrollRect.vertical = false;
                     _scrollRect.horizontal = true;    
                 }
+                break;
+        }
+
+        switch (_origin)
+        {
+            case ViewHelper.Origin.Top:
+                _scrollRect.verticalNormalizedPosition = 1;
+                break;
+            case ViewHelper.Origin.Bottom:
+                _scrollRect.verticalNormalizedPosition = 0;
+                break;
+            case ViewHelper.Origin.Left:
+                _scrollRect.horizontalNormalizedPosition = 1;
+                break;
+            case ViewHelper.Origin.Right:
+                _scrollRect.horizontalNormalizedPosition = 0;
                 break;
         }
     }

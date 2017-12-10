@@ -12,9 +12,4 @@ public class ExampleListViewData : ListViewData
     }
 
     public ObservableList<ExampleListViewData> DataProvider { get; private set; }
-
-    public override string ToString()
-    {
-        return string.Format("[ExampleListViewData: StringName={0}, DataProvider={1}]", StringName, DataProvider);
-    }
 }

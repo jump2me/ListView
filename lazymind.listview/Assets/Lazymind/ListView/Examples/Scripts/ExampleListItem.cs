@@ -19,7 +19,8 @@ public class ExampleListItem : ListItem<ExampleListViewData>
     {
         base.Invalidate();
 
-        stringNameText.text = Data.StringName.Value;
+        //stringNameText.text = Data.StringName.Value;
+        stringNameText.text = string.Format("{0},{1}", Data.Min, Data.Max);
     }
 
     void OnBGButtonClicked()

@@ -70,12 +70,12 @@ public class ListView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
                 bottom = (top + ViewComponent.RectTransform.rect.height);
                 break;
             case ViewHelper.Origin.Bottom:
-                top = _value.y;
-                bottom = (top - ViewComponent.RectTransform.rect.height);
+                top = -_value.y;
+                bottom = (top + ViewComponent.RectTransform.rect.height);
                 break;
             case ViewHelper.Origin.Left:
-                top = _value.x;
-                bottom = (top - ViewComponent.RectTransform.rect.width);
+                top = -_value.x;
+                bottom = (top + ViewComponent.RectTransform.rect.width);
                 break;
             case ViewHelper.Origin.Right:
                 top = _value.x;

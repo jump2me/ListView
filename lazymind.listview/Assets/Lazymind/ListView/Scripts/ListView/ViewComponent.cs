@@ -37,16 +37,19 @@ public class ViewComponent : MonoBehaviour
 
         ScrollRect.content = Content;
 
-        ScrollRect.onValueChanged.AddListener(OnScrollRectValueChanged);
+        //ScrollRect.onValueChanged.AddListener(OnScrollRectValueChanged);
     }
 
     public void SetAnchor(ViewHelper.Origin _origin)
     {
         Origin = _origin;
 
+        SetContentRectTransform(RectTransform.rect.width, RectTransform.rect.height);
+
         ScrollRect.SetAnchor(Origin);
 
-        SetContentRectTransform(RectTransform.rect.width, RectTransform.rect.height);
+        Canvas.ForceUpdateCanvases();
+        ScrollRect.onValueChanged.AddListener(OnScrollRectValueChanged);
     }
 
     void OnScrollRectValueChanged(Vector2 _value)
@@ -59,5 +62,6 @@ public class ViewComponent : MonoBehaviour
         Content.SetAnchor(Origin);
 
         Content.sizeDelta = new Vector2(_deltaX, _deltaY);
+        Content.anchoredPosition = Vector2.zero;
     }
 }

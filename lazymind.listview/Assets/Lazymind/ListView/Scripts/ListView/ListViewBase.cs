@@ -16,7 +16,7 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
     public Dictionary<string, GameObject> PrefabByName { get; private set; }
     public Dictionary<string, Vector2> PrefabSizeByName { get; private set; }
 
-    public Dictionary<string, Queue<ListItemInfo>> ListItemInfoQueueByPrefab { get; set; }
+    public Dictionary<string, Queue<ListItemInfo>> ListItemInfoQueueByPrefabName { get; set; }
 
     public List<TYPE> RenderedDataList { get; set; }
 
@@ -29,7 +29,7 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
 
         RenderedDataList = new List<TYPE>();
 
-        ListItemInfoQueueByPrefab = new Dictionary<string, Queue<ListItemInfo>>();
+        ListItemInfoQueueByPrefabName = new Dictionary<string, Queue<ListItemInfo>>();
 
         ViewComponent.ScrollEvent += OnScroll;
 
@@ -100,7 +100,7 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
 
     void ClearQueue()
     {
-        foreach (var kv in ListItemInfoQueueByPrefab)
+        foreach (var kv in ListItemInfoQueueByPrefabName)
         {
             foreach (ListItemInfo info in kv.Value)
             {
@@ -109,7 +109,7 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
             }
         }
 
-        ListItemInfoQueueByPrefab.Clear();
+        ListItemInfoQueueByPrefabName.Clear();
     }
 
     protected void InvalidateListItem(TYPE _data)
@@ -121,10 +121,10 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
         string prefabName = _data.PrefabName;
         prefab = GetPrefab(prefabName);
 
-        if (ListItemInfoQueueByPrefab.ContainsKey(prefab.name) == false)
-            ListItemInfoQueueByPrefab.Add(prefab.name, new Queue<ListItemInfo>());
+        if (ListItemInfoQueueByPrefabName.ContainsKey(prefab.name) == false)
+            ListItemInfoQueueByPrefabName.Add(prefab.name, new Queue<ListItemInfo>());
 
-        var queue = ListItemInfoQueueByPrefab[prefab.name];
+        var queue = ListItemInfoQueueByPrefabName[prefab.name];
         if (queue.Count < RenderedDataList.Count)
         {
             GameObject go = ListItemRendererPool.Get(prefab);
@@ -164,6 +164,7 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
         GameObject prefab;
         if (string.IsNullOrEmpty(prefabName) || PrefabByName.TryGetValue(prefabName, out prefab) == false)
             prefab = PrefabByName.FirstOrDefault().Value;
+        
         return prefab;
     }
 

@@ -11,9 +11,9 @@ public class ComponentExample : MonoBehaviour {
     public GameObject prefab;
 	void Start () {
         
-        listView = new ListView<ExampleListViewData>(list, DataProvider, ViewHelper.Origin.Top, prefab);
+        listView = new ListView<ExampleListViewData>(list, DataProvider, ViewHelper.Origin.Bottom, prefab);
 
-        for (int i = 0, max = 100; i < max; i++)
+        for (int i = 0, max = 10; i < max; i++)
         {
             var data = new ExampleListViewData(i, DataProvider);
             data.StringName.Value = "test item no." + i;
