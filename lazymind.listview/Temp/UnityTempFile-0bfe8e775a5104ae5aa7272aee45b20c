@@ -86,13 +86,15 @@
 -define:UNITY_EDITOR_OSX
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
-'Assets/Lazymind/DataBinding/DataBinding.cs'
+'Assets/Lazymind/DataBinding/BindProperty.cs'
+'Assets/Lazymind/Helper/MathHelper.cs'
+'Assets/Lazymind/Helper/SimpleGameObjectPool.cs'
+'Assets/Lazymind/ListView/Examples/Scripts/ComponentExample.cs'
 'Assets/Lazymind/ListView/Examples/Scripts/DataBindingExample.cs'
 'Assets/Lazymind/ListView/Examples/Scripts/Example.cs'
 'Assets/Lazymind/ListView/Examples/Scripts/ExampleListItem.cs'
 'Assets/Lazymind/ListView/Examples/Scripts/ExampleListViewData.cs'
 'Assets/Lazymind/ListView/Examples/Scripts/TileExample.cs'
-'Assets/Lazymind/ListView/Scripts/ListView/Helper/MathHelper.cs'
 'Assets/Lazymind/ListView/Scripts/ListView/Helper/ObservableList.cs'
 'Assets/Lazymind/ListView/Scripts/ListView/Helper/ViewHelper.cs'
 'Assets/Lazymind/ListView/Scripts/ListView/ListItem.cs'

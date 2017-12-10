@@ -1,17 +1,16 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Lazymind/ListView/Scripts/ListView/ListViewData.cs">
+﻿<Properties StartupConfiguration="{1A71F360-25C7-FF7A-84FC-7F4A4888187B}|단위 테스트">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Lazymind/ListView/Examples/Scripts/Example.cs">
     <Files>
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ListView.cs" Line="96" Column="59" />
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ListItem.cs" Line="3" Column="62" />
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ListViewBase.cs" Line="85" Column="24" />
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ListViewData.cs" Line="52" Column="17" />
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/TileView.cs" Line="22" Column="33" />
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ViewComponent.cs" Line="32" Column="35" />
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/Helper/MathHelper.cs" Line="10" Column="2" />
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/Helper/ViewHelper.cs" Line="13" Column="5" />
-      <File FileName="Assets/Lazymind/DataBinding/BindProperty.cs" Line="5" Column="26" />
-      <File FileName="Assets/Lazymind/ListView/Examples/Scripts/ExampleListViewData.cs" Line="10" Column="51" />
-      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/Helper/ObservableList.cs" Line="24" Column="9" NotebookId="1" />
+      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ListViewData.cs" Line="21" Column="34" />
+      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ViewComponent.cs" Line="60" Column="16" />
+      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ListView.cs" Line="132" Column="53" />
+      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ListViewBase.cs" Line="159" Column="46" />
+      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/TileView.cs" Line="69" Column="6" />
+      <File FileName="Assets/Lazymind/ListView/Scripts/ListView/ListItem.cs" Line="29" Column="11" />
+      <File FileName="Assets/Lazymind/ListView/Examples/Scripts/DataBindingExample.cs" Line="46" Column="38" />
+      <File FileName="Assets/Lazymind/ListView/Examples/Scripts/ExampleListViewData.cs" Line="8" Column="45" />
+      <File FileName="Assets/Lazymind/ListView/Examples/Scripts/Example.cs" Line="34" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

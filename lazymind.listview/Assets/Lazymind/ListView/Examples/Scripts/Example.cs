@@ -22,17 +22,17 @@ public class Example : MonoBehaviour
 
     void Start()
     {
+        var verticalPrefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Vertical");
+        var horizontalPrefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Horizontal");
+
         // top
         topDataProvider = new ObservableList<ExampleListViewData>();
-        topList = new ListView<ExampleListViewData>(topRectTransform, topDataProvider, ViewHelper.Origin.Top);
-
-        var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Vertical");
-
+        topList = new ListView<ExampleListViewData>(topRectTransform, topDataProvider, ViewHelper.Origin.Top, verticalPrefab);
         topDataProvider.Clear(false);
 
         for (int i = 0, max = 100; i < max; i++)
         {
-            var data = new ExampleListViewData(i, prefab, topDataProvider);
+            var data = new ExampleListViewData(i, topDataProvider);
             data.StringName.Value = "top : " + i;
 
             topDataProvider.Add(data, i == max - 1);
@@ -40,13 +40,12 @@ public class Example : MonoBehaviour
 
         // bottom
         bottomDataProvider = new ObservableList<ExampleListViewData>();
-        bottomList = new ListView<ExampleListViewData>(bottomRectTransform, bottomDataProvider, ViewHelper.Origin.Bottom);
-
+        bottomList = new ListView<ExampleListViewData>(bottomRectTransform, bottomDataProvider, ViewHelper.Origin.Bottom, verticalPrefab);
         bottomDataProvider.Clear(false);
 
         for (int i = 0, max = 100; i < max; i++)
         {
-            var data = new ExampleListViewData(i, prefab, bottomDataProvider);
+            var data = new ExampleListViewData(i, bottomDataProvider);
             data.StringName.Value = "bottom : " + i;
 
             bottomDataProvider.Add(data, i == max - 1);
@@ -54,15 +53,12 @@ public class Example : MonoBehaviour
 
         // left
         leftDataProvider = new ObservableList<ExampleListViewData>();
-        leftList = new ListView<ExampleListViewData>(leftRectTransform, leftDataProvider, ViewHelper.Origin.Left);
-
-        prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Horizontal");
-
+        leftList = new ListView<ExampleListViewData>(leftRectTransform, leftDataProvider, ViewHelper.Origin.Left, horizontalPrefab);
         leftDataProvider.Clear(false);
 
         for (int i = 0, max = 100; i < max; i++)
         {
-            var data = new ExampleListViewData(i, prefab, leftDataProvider);
+            var data = new ExampleListViewData(i, leftDataProvider);
             data.StringName.Value = "left : " + i;
 
             leftDataProvider.Add(data, i == max - 1);
@@ -71,15 +67,13 @@ public class Example : MonoBehaviour
 
         // right
         rightDataProvider = new ObservableList<ExampleListViewData>();
-        rightList = new ListView<ExampleListViewData>(rightRectTransform, rightDataProvider, ViewHelper.Origin.Right);
-
-        prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Horizontal");
+        rightList = new ListView<ExampleListViewData>(rightRectTransform, rightDataProvider, ViewHelper.Origin.Right, horizontalPrefab);
 
         rightDataProvider.Clear(false);
 
         for (int i = 0, max = 100; i < max; i++)
         {
-            var data = new ExampleListViewData(i, prefab, rightDataProvider);
+            var data = new ExampleListViewData(i, rightDataProvider);
             data.StringName.Value = "right : " + i;
 
             rightDataProvider.Add(data, i == max - 1);

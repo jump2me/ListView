@@ -19,7 +19,8 @@ public class DataBindingExample : MonoBehaviour
     private void Start()
     {
         DataProvider = new ObservableList<ExampleListViewData>();
-        listView = new ListView<ExampleListViewData>(listRectTransform, DataProvider, ViewHelper.Origin.Top);
+        var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Vertical");
+        listView = new ListView<ExampleListViewData>(listRectTransform, DataProvider, ViewHelper.Origin.Top, prefab);
 
         addButton.onClick.AddListener(OnAddButtonClicked);
         removeButton.onClick.AddListener(OnRemoveButtonClicked);
@@ -29,9 +30,8 @@ public class DataBindingExample : MonoBehaviour
 
     void OnAddButtonClicked()
     {
-        var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Vertical");
         var id = DataProvider.Count;
-        var data = new ExampleListViewData(id, prefab, DataProvider);
+        var data = new ExampleListViewData(id, DataProvider);
         data.StringName.Value = "data" + id;
 
         DataProvider.Add(data);
@@ -39,9 +39,8 @@ public class DataBindingExample : MonoBehaviour
 
     void OnInsertButtonClicked()
     {
-        var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Vertical");
         var id = DataProvider.Count;
-        var data = new ExampleListViewData(id, prefab, DataProvider);
+        var data = new ExampleListViewData(id, DataProvider);
         data.StringName.Value = "data" + id;
 
         DataProvider.Insert(0, data);

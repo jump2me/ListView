@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Lazymind/ListView/Examples/Scenes/TileExample.unity
+- path: Assets/Lazymind/ListView/Examples/Scenes/OriginExample.unity
   isLoaded: 1
   isActive: 1

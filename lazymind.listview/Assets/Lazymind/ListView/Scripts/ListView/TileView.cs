@@ -4,9 +4,9 @@ public class TileView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
 {
     public int Column { get; set; }
 
-    public TileView(RectTransform _rectTransform, ObservableList<TYPE> _dataProvider, int _column = 1)
+    public TileView(RectTransform _rectTransform, ObservableList<TYPE> _dataProvider, int _column, params GameObject[] _prefabs)
     {
-        base.Init(_rectTransform, _dataProvider);
+        base.Init(_rectTransform, _dataProvider, _prefabs);
 
         ViewComponent.SetAnchor(ViewHelper.Origin.Top);
         Column = _column;
@@ -18,11 +18,17 @@ public class TileView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
         for (int index = 0, max = DataProvider.Count; index < max; index++)
         {
             var data = DataProvider[index];
-            data.X = (index % Column) * data.Width;
-            data.Y = (index / Column) * data.Height;
+            var prefab = GetPrefab(data.PrefabName);
+
+            var size = PrefabSizeByName[prefab.name];
+            var width = (int)size.x;
+            var height = (int)size.y;
+
+            data.X = (index % Column) * width;
+            data.Y = (index / Column) * height;
 
             data.Min = data.Y;
-            data.Max = data.Y + data.Height;
+            data.Max = data.Y + height;
 
             maxY = data.Max;
         }

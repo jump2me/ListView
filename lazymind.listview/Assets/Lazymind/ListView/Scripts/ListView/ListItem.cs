@@ -26,7 +26,7 @@ public class ListItem<TYPE> : MonoBehaviour where TYPE : ListViewData
         Data = _data;
         Data.NotifyChange += OnNotifyChange;
 
-        RectTransform.sizeDelta = new Vector2(Data.Width, Data.Height);
+        //RectTransform.sizeDelta = new Vector2(Data.Width, Data.Height);
 
         Invalidate();
     }

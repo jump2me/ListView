@@ -2,6 +2,10 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(ScrollRect))]
+[RequireComponent(typeof(RectMask2D))]
+[RequireComponent(typeof(Image))]
 public class ViewComponent : MonoBehaviour
 {
     public ViewHelper.Origin Origin { get; set; }
@@ -19,9 +23,9 @@ public class ViewComponent : MonoBehaviour
     private void Awake()
     {
         RectTransform = gameObject.GetComponent<RectTransform>();
-        ScrollRect = gameObject.AddComponent<ScrollRect>();
-        RectMask2D = gameObject.AddComponent<RectMask2D>();
-        Image = gameObject.AddComponent<Image>();
+        ScrollRect = gameObject.GetComponent<ScrollRect>();
+        RectMask2D = gameObject.GetComponent<RectMask2D>();
+        Image = gameObject.GetComponent<Image>();
 
         var go = new GameObject();
         go.name = "Content";

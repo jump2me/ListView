@@ -47,12 +47,14 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Lazymind\DataBinding\BindProperty.cs" />
+     <Compile Include="Assets\Lazymind\Helper\MathHelper.cs" />
+     <Compile Include="Assets\Lazymind\Helper\SimpleGameObjectPool.cs" />
+     <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\ComponentExample.cs" />
      <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\DataBindingExample.cs" />
      <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\Example.cs" />
      <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\ExampleListItem.cs" />
      <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\ExampleListViewData.cs" />
      <Compile Include="Assets\Lazymind\ListView\Examples\Scripts\TileExample.cs" />
-     <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\Helper\MathHelper.cs" />
      <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\Helper\ObservableList.cs" />
      <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\Helper\ViewHelper.cs" />
      <Compile Include="Assets\Lazymind\ListView\Scripts\ListView\ListItem.cs" />

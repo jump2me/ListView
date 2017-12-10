@@ -13,15 +13,15 @@ public class TileExample : MonoBehaviour
     private void Start()
     {
         DataProvider = new ObservableList<ExampleListViewData>();
-        tileView = new TileView<ExampleListViewData>(tileListRectTransform, DataProvider, 5);
-
         var prefab = Resources.Load<GameObject>("Prefab/ExampleListItem_Tile");
+
+        tileView = new TileView<ExampleListViewData>(tileListRectTransform, DataProvider, 5, prefab);
 
         DataProvider.Clear(false);
 
         for (int i = 0, max = 107; i < max; i++)
         {
-            var data = new ExampleListViewData(i, prefab, DataProvider);
+            var data = new ExampleListViewData(i, DataProvider);
             data.StringName.Value = "top : " + i;
 
             DataProvider.Add(data, i == max - 1);

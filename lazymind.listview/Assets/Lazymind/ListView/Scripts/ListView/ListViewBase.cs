@@ -1,42 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
-public class SimpleGameObjectPool
-{
-    Dictionary<string, Queue<GameObject>> m_queueByPrefabName = new Dictionary<string, Queue<GameObject>>();
-
-    public GameObject Get(GameObject _prefab)
-    {
-        var prefabName = _prefab.name;
-        if (m_queueByPrefabName.ContainsKey(prefabName) == false)
-            m_queueByPrefabName.Add(prefabName, new Queue<GameObject>());
-
-        if (m_queueByPrefabName[prefabName].Count == 0)
-        {
-            var item = UnityEngine.Object.Instantiate(_prefab);
-            item.name = prefabName;
-            m_queueByPrefabName[prefabName].Enqueue(item);
-        }
-
-        var go = m_queueByPrefabName[prefabName].Dequeue();
-        if (go.activeInHierarchy == false)
-            go.SetActive(true);
-
-        return go;
-    }
-
-    public void Release(GameObject _go)
-    {
-        _go.SetActive(false);
-
-        var prefabName = _go.name;
-        if (m_queueByPrefabName.ContainsKey(prefabName) == false)
-        {
-            m_queueByPrefabName.Add(prefabName, new Queue<GameObject>());
-        }
-        m_queueByPrefabName[prefabName].Enqueue(_go);
-    }
-}
+using Lazymind;
+using System.Linq;
 
 public class ListViewBase<TYPE> where TYPE : ListViewData
 {
@@ -48,24 +13,42 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
 
     public ViewComponent ViewComponent { get; set; }
     public ObservableList<TYPE> DataProvider { get; set; }
-    public Dictionary<GameObject, Queue<ListItemInfo>> ListItemInfoQueueByPrefab { get; set; }
+    public Dictionary<string, GameObject> PrefabByName { get; private set; }
+    public Dictionary<string, Vector2> PrefabSizeByName { get; private set; }
+
+    public Dictionary<string, Queue<ListItemInfo>> ListItemInfoQueueByPrefab { get; set; }
 
     public List<TYPE> RenderedDataList { get; set; }
 
     SimpleGameObjectPool ListItemRendererPool { get; set; }
 
-    protected void Init(RectTransform _rectTransform, ObservableList<TYPE> _dataProvider)
+    protected void Init(RectTransform _rectTransform, ObservableList<TYPE> _dataProvider, params GameObject[] _prefabs)
     {
         ViewComponent    = _rectTransform.gameObject.AddComponent<ViewComponent>();
         DataProvider     = _dataProvider;
-        ListItemInfoQueueByPrefab    = new Dictionary<GameObject, Queue<ListItemInfo>>();
+
         RenderedDataList = new List<TYPE>();
+
+        ListItemInfoQueueByPrefab = new Dictionary<string, Queue<ListItemInfo>>();
 
         ViewComponent.ScrollEvent += OnScroll;
 
         RegisterEvents();
 
         ListItemRendererPool = new SimpleGameObjectPool();
+
+        PrefabByName = new Dictionary<string, GameObject>();
+        PrefabSizeByName = new Dictionary<string, Vector2>();
+        foreach(GameObject prefab in _prefabs)
+        {
+            if(PrefabByName.ContainsKey(prefab.name) == false)
+            {
+                PrefabByName.Add(prefab.name, prefab);
+
+                var rectTransform = prefab.GetComponent<RectTransform>();
+                PrefabSizeByName.Add(prefab.name, rectTransform.rect.size);
+            }
+        }
     }
 
     public void RegisterEvents()
@@ -131,18 +114,20 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
 
     protected void InvalidateListItem(TYPE _data)
     {
-        var anchoredPosition = GetListItemAnchoredPosition(_data);
-
         RectTransform listItemRectTransform = null;
         ListItem<TYPE> listItem = null;
 
-        if (ListItemInfoQueueByPrefab.ContainsKey(_data.Prefab) == false)
-            ListItemInfoQueueByPrefab.Add(_data.Prefab, new Queue<ListItemInfo>());
+        GameObject prefab = null;
+        string prefabName = _data.PrefabName;
+        prefab = GetPrefab(prefabName);
 
-        var queue = ListItemInfoQueueByPrefab[_data.Prefab];
+        if (ListItemInfoQueueByPrefab.ContainsKey(prefab.name) == false)
+            ListItemInfoQueueByPrefab.Add(prefab.name, new Queue<ListItemInfo>());
+
+        var queue = ListItemInfoQueueByPrefab[prefab.name];
         if (queue.Count < RenderedDataList.Count)
         {
-            GameObject go = ListItemRendererPool.Get(_data.Prefab);
+            GameObject go = ListItemRendererPool.Get(prefab);
 
             listItemRectTransform = go.GetComponent<RectTransform>();
             listItemRectTransform.SetAnchor(ViewComponent.Origin);
@@ -161,9 +146,25 @@ public class ListViewBase<TYPE> where TYPE : ListViewData
             queue.Enqueue(info);
         }
 
+        var anchoredPosition = GetListItemAnchoredPosition(_data);
+
         listItemRectTransform.anchoredPosition = anchoredPosition;
+        listItemRectTransform.sizeDelta = GetListItemSizeDelta(prefab.name);
 
         listItem.SetData(_data);
+    }
+
+    protected virtual Vector2 GetListItemSizeDelta(string _prefabName)
+    {
+        return PrefabSizeByName[_prefabName];
+    }
+
+    protected GameObject GetPrefab(string prefabName)
+    {
+        GameObject prefab;
+        if (string.IsNullOrEmpty(prefabName) || PrefabByName.TryGetValue(prefabName, out prefab) == false)
+            prefab = PrefabByName.FirstOrDefault().Value;
+        return prefab;
     }
 
     protected virtual void OnScroll(Vector2 _value)

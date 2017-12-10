@@ -2,9 +2,9 @@
 
 public class ListView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
 {
-    public ListView(RectTransform _rectTransform, ObservableList<TYPE> _dataProvider, ViewHelper.Origin _origin)
+    public ListView(RectTransform _rectTransform, ObservableList<TYPE> _dataProvider, ViewHelper.Origin _origin, params GameObject[] _prefabs)
     {
-        base.Init(_rectTransform, _dataProvider);
+        base.Init(_rectTransform, _dataProvider, _prefabs);
 
         ViewComponent.SetAnchor(_origin);
     }
@@ -16,18 +16,24 @@ public class ListView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
         for (int index = 0, max = DataProvider.Count; index < max; index++)
         {
             var data = DataProvider[index];
+            var prefab = GetPrefab(data.PrefabName);
+
+            var size = PrefabSizeByName[prefab.name];
+            var width = (int)size.x;
+            var height = (int)size.y;
+
             data.Min = sum;
             switch (origin)
             {
                 case ViewHelper.Origin.Top:
                 case ViewHelper.Origin.Bottom:
-                    data.Max = sum + data.Height;
-                    sum += data.Height;
+                    data.Max = sum + height;
+                    sum += height;
                     break;
                 case ViewHelper.Origin.Left:
                 case ViewHelper.Origin.Right:
-                    data.Max = sum + data.Width;
-                    sum += data.Width;
+                    data.Max = sum + width;
+                    sum += width;
                     break;
             }
         }
@@ -114,5 +120,26 @@ public class ListView<TYPE> : ListViewBase<TYPE> where TYPE : ListViewData
         }
 
         return result;
+    }
+
+    protected override Vector2 GetListItemSizeDelta(string _prefabName)
+    {
+        var size = PrefabSizeByName[_prefabName];
+
+        var width = size.x;
+        var height = size.y;
+
+        var rect = ViewComponent.RectTransform.rect;
+        switch(ViewComponent.Origin)
+        {
+            case ViewHelper.Origin.Top:
+            case ViewHelper.Origin.Bottom:
+                return new Vector2(rect.width, height);
+            case ViewHelper.Origin.Left:
+            case ViewHelper.Origin.Right:
+                return new Vector2(width, rect.height);
+        }
+
+        return new Vector2(width, height);
     }
 }
